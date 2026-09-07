@@ -9,6 +9,7 @@
 *.userosscache
 *.sln.docstates
 .vscode/
+**/.git-nested-backup/
 
 # NuGet and local tooling
 packages/
