@@ -16,6 +16,11 @@ packages/
 *.nupkg
 .nuget/
 
+# Local SQLite databases
+**/*.db
+**/*.db-shm
+**/*.db-wal
+
 # Local settings and secrets
 appsettings.Local.json
 secrets.json
