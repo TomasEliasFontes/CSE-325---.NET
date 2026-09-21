@@ -1,0 +1,20 @@
+<HeadContent>
+    <style>
+        :root {
+            --board-bg: #f4c430;
+            --player1: #e53935;
+            --player2: #1565c0;
+        }
+    </style>
+</HeadContent>
+
+<div class="board-wrapper">
+    <div class="board" aria-label="Connect Four game board">
+        @for (var i = 0; i < 42; i++)
+        {
+            <span class="container">
+                <span></span>
+            </span>
+        }
+    </div>
+</div>
