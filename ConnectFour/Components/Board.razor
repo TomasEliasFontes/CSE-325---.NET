@@ -1,11 +1,12 @@
+@using System.Drawing
 @inject GameState State
 
 <HeadContent>
     <style>
         :root {
-            --board-bg: #f4c430;
-            --player1: #e53935;
-            --player2: #1565c0;
+            --board-bg: @ColorTranslator.ToHtml(BoardColor);
+            --player1: @ColorTranslator.ToHtml(Player1Color);
+            --player2: @ColorTranslator.ToHtml(Player2Color);
         }
     </style>
 </HeadContent>
@@ -15,7 +16,10 @@
         @for (byte i = 0; i < 7; i++)
         {
             var col = i;
-            <button type="button" title="Click to play a piece" @onclick="() => PlayPiece(col)">Drop</button>
+            <button type="button"
+                    title="Click to play a piece"
+                    aria-label="Play in column @(col + 1)"
+                    @onclick="() => PlayPiece(col)">Drop</button>
         }
     </nav>
 
@@ -27,24 +31,51 @@
     </article>
 
     <div class="board-area">
-    <div class="board" aria-label="Connect Four game board">
-        @for (var i = 0; i < 42; i++)
-        {
-            <span class="container">
-                <span></span>
-            </span>
-        }
-    </div>
+        <div class="board" role="grid" aria-label="Connect Four game board">
+            @for (var i = 0; i < 42; i++)
+            {
+                <span class="container">
+                    <span></span>
+                </span>
+            }
+        </div>
 
         @for (var i = 0; i < 42; i++)
         {
             <span class="@pieces[i]"></span>
         }
     </div>
+
+    <section class="move-history" aria-labelledby="move-history-title">
+        <h2 id="move-history-title">Move history</h2>
+        @if (moveHistory.Count == 0)
+        {
+            <p>No moves yet.</p>
+        }
+        else
+        {
+            <ol>
+                @foreach (var move in moveHistory)
+                {
+                    <li>@move</li>
+                }
+            </ol>
+        }
+    </section>
 </div>
 
 @code {
+    [Parameter]
+    public Color BoardColor { get; set; } = ColorTranslator.FromHtml("yellow");
+
+    [Parameter]
+    public Color Player1Color { get; set; } = ColorTranslator.FromHtml("red");
+
+    [Parameter]
+    public Color Player2Color { get; set; } = ColorTranslator.FromHtml("blue");
+
     private string[] pieces = new string[42];
+    private List<string> moveHistory = new();
     private string winnerMessage = string.Empty;
     private string errorMessage = string.Empty;
 
@@ -69,6 +100,7 @@
             var turn = State.CurrentTurn;
             var landingRow = State.PlayPiece(column);
             pieces[turn] = $"player{player} col{column} drop{landingRow}";
+            moveHistory.Add($"Move {turn + 1}: Player {player} - Column {column + 1}");
         }
         catch (ArgumentException exception)
         {
@@ -90,5 +122,6 @@
         winnerMessage = string.Empty;
         errorMessage = string.Empty;
         pieces = new string[42];
+        moveHistory.Clear();
     }
 }

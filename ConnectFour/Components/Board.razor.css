@@ -69,6 +69,38 @@ nav button:focus-visible {
     margin: 0 auto;
 }
 
+.move-history {
+    width: min(30em, 100%);
+    margin: 1.5rem auto 0;
+    padding: 1rem;
+    border: 1px solid #d0d5dd;
+    border-radius: 0.5rem;
+    background: #fff;
+    color: #344054;
+    text-align: left;
+}
+
+.move-history h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+}
+
+.move-history p {
+    margin: 0;
+    color: #667085;
+}
+
+.move-history ol {
+    max-height: 12rem;
+    margin: 0;
+    padding-left: 1.5rem;
+    overflow-y: auto;
+}
+
+.move-history li + li {
+    margin-top: 0.25rem;
+}
+
 .board {
     display: inline-flex;
     flex-wrap: wrap;
