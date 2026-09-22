@@ -175,27 +175,27 @@ nav button:focus-visible {
 .drop6 { animation: drop6 1.3s cubic-bezier(.5, .05, 1, .5) forwards; }
 
 @keyframes drop1 {
-    to { transform: translateY(1.27em); }
+    to { transform: translateY(21.27em); }
 }
 
 @keyframes drop2 {
-    to { transform: translateY(5.27em); }
-}
-
-@keyframes drop3 {
-    to { transform: translateY(9.27em); }
-}
-
-@keyframes drop4 {
-    to { transform: translateY(13.27em); }
-}
-
-@keyframes drop5 {
     to { transform: translateY(17.27em); }
 }
 
+@keyframes drop3 {
+    to { transform: translateY(13.27em); }
+}
+
+@keyframes drop4 {
+    to { transform: translateY(9.27em); }
+}
+
+@keyframes drop5 {
+    to { transform: translateY(5.27em); }
+}
+
 @keyframes drop6 {
-    to { transform: translateY(21.27em); }
+    to { transform: translateY(1.27em); }
 }
 
 @media (max-width: 32em) {
