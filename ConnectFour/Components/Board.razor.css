@@ -8,8 +8,7 @@
 
 nav {
     display: inline-flex;
-    justify-content: center;
-    gap: 0.25rem;
+    flex-direction: row;
     width: 30em;
     max-width: 100%;
     margin: 0 auto;
@@ -17,12 +16,12 @@ nav {
 
 nav button {
     width: 4em;
+    padding: 0;
     border: 0;
     background: transparent;
-    color: #3b2f1e;
+    text-align: center;
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 1em;
 }
 
 nav button:hover,
@@ -65,6 +64,7 @@ nav button:focus-visible {
 .board-area {
     position: relative;
     width: 30em;
+    height: 25em;
     max-width: 100%;
     margin: 0 auto;
 }
@@ -102,27 +102,31 @@ nav button:focus-visible {
 }
 
 .board {
-    display: inline-flex;
-    flex-wrap: wrap;
-    width: min(30em, 100%);
-    height: 24em;
     margin-top: 1em;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 30em;
+    height: 24em;
     overflow: hidden;
+    row-gap: 0;
     pointer-events: none;
-    background-color: var(--board-bg);
-    border: 10px solid var(--board-bg);
-    border-radius: 0.75rem;
-    box-shadow: 0 1rem 2rem rgba(35, 31, 32, 0.2);
+    border-left: 10px solid var(--board-bg);
+    z-index: -5;
 }
 
 .container {
     position: relative;
     display: block;
+    box-sizing: border-box;
     width: 4em;
     height: 4em;
+    margin: 0;
     padding: 4px;
     overflow: hidden;
     background-color: transparent;
+    pointer-events: none;
+    z-index: -2;
 }
 
 .container span {
@@ -132,8 +136,9 @@ nav button:focus-visible {
     width: 3.5em;
     height: 3.5em;
     border-radius: 50%;
-    background-color: #fff;
     box-shadow: 0 0 0 3em var(--board-bg);
+    pointer-events: none;
+    z-index: 5;
 }
 
 .player1,
@@ -141,7 +146,7 @@ nav button:focus-visible {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: -8;
     display: block;
     width: 3.5em;
     height: 3.5em;
@@ -159,13 +164,13 @@ nav button:focus-visible {
     box-shadow: 0 0 0 4px var(--player2);
 }
 
-.col0 { left: 14px; }
-.col1 { left: calc(4em + 14px); }
-.col2 { left: calc(8em + 14px); }
-.col3 { left: calc(12em + 14px); }
-.col4 { left: calc(16em + 14px); }
-.col5 { left: calc(20em + 14px); }
-.col6 { left: calc(24em + 14px); }
+.col0 { left: 9px; }
+.col1 { left: calc(4em + 9px); }
+.col2 { left: calc(8em + 9px); }
+.col3 { left: calc(12em + 9px); }
+.col4 { left: calc(16em + 9px); }
+.col5 { left: calc(20em + 9px); }
+.col6 { left: calc(24em + 9px); }
 
 .drop1 { animation: drop1 0.8s cubic-bezier(.5, .05, 1, .5) forwards; }
 .drop2 { animation: drop2 0.9s cubic-bezier(.5, .05, 1, .5) forwards; }
@@ -204,8 +209,7 @@ nav button:focus-visible {
     }
 
     .board {
-        transform: scale(0.82);
+        transform: translateX(-50%) scale(0.82);
         transform-origin: top center;
-        margin-bottom: -4.25em;
     }
 }
