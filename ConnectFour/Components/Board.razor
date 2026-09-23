@@ -19,13 +19,14 @@
             <button type="button"
                     title="Click to play a piece"
                     aria-label="Play in column @(col + 1)"
-                    @onclick="() => PlayPiece(col)">Drop</button>
+                    @onclick="() => PlayPiece(col)">🔽</button>
         }
     </nav>
 
     <article class="status" aria-live="polite">
         <span class="winner">@winnerMessage</span>
-        <button class="reset-button" style="@ResetStyle" @onclick="ResetGame">Reset the game</button>
+        <button class="reset-button" @onclick="ResetGame">Reset the game</button>
+        <br />
         <span class="alert-danger">@errorMessage</span>
         <span class="alert-info">@CurrentTurn</span>
     </article>
@@ -82,8 +83,6 @@
     private string CurrentTurn => winnerMessage.Length == 0
         ? $"Player {State.PlayerTurn}'s Turn"
         : string.Empty;
-
-    private string ResetStyle => winnerMessage.Length == 0 ? "display: none;" : string.Empty;
 
     protected override void OnInitialized()
     {
